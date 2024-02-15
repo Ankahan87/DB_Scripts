@@ -11,20 +11,20 @@ pseudonyme varchar(200) not null
 create table if not exists Disks (
 id serial primary key,
 name varchar(200) not null,
-year_ varchar(4) not null
+year_ data not null
 );
 
 create table if not exists Tracks (
 id serial primary key,
 name varchar(200) not null,
-duration varchar(5),
+duration float,
 disk_id integer not null references Disks(id)
 );
 
 create table if not exists Collections (
 id serial primary key,
 name varchar(200) not null,
-year_ varchar(4) not null
+year_ data not null
 );
 
 create table if not exists Artistes_disks (
@@ -37,4 +37,10 @@ create table if not exists Collections_tracks (
 id serial primary key,
 collection_id integer not null references Collections(id),
 track_id integer not null references Tracks(id)
+);
+
+create table if not exists Artistes_genres (
+id serial primary key,
+artist_id integer not null references Artistes(id),
+genre_id integer not null references Genres(id)
 );
